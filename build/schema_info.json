@@ -1,0 +1,1861 @@
+{
+ "tables": [
+  {
+   "name": "department",
+   "columns": [
+    {
+     "name": "dept_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('department_dept_id_seq'::regclass)"
+    },
+    {
+     "name": "dept_name",
+     "type": "character varying",
+     "len": 100,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    }
+   ],
+   "pk": [
+    "dept_id"
+   ],
+   "fks": [],
+   "rows": 6
+  },
+  {
+   "name": "blood_group",
+   "columns": [
+    {
+     "name": "bg_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('blood_group_bg_id_seq'::regclass)"
+    },
+    {
+     "name": "group_name",
+     "type": "character varying",
+     "len": 3,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    }
+   ],
+   "pk": [
+    "bg_id"
+   ],
+   "fks": [],
+   "rows": 8
+  },
+  {
+   "name": "blood_compatibility",
+   "columns": [
+    {
+     "name": "donor_bg",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "recipient_bg",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    }
+   ],
+   "pk": [
+    "donor_bg",
+    "recipient_bg"
+   ],
+   "fks": [
+    {
+     "name": "blood_compatibility_donor_bg_fkey",
+     "cols": [
+      "donor_bg"
+     ],
+     "ref": "blood_group",
+     "refcols": [
+      "bg_id"
+     ]
+    },
+    {
+     "name": "blood_compatibility_recipient_bg_fkey",
+     "cols": [
+      "recipient_bg"
+     ],
+     "ref": "blood_group",
+     "refcols": [
+      "bg_id"
+     ]
+    }
+   ],
+   "rows": 27
+  },
+  {
+   "name": "venue",
+   "columns": [
+    {
+     "name": "venue_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('venue_venue_id_seq'::regclass)"
+    },
+    {
+     "name": "venue_name",
+     "type": "character varying",
+     "len": 100,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "address",
+     "type": "character varying",
+     "len": 200,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "city",
+     "type": "character varying",
+     "len": 50,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "'Bengaluru'::character varying"
+    },
+    {
+     "name": "capacity",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    }
+   ],
+   "pk": [
+    "venue_id"
+   ],
+   "fks": [],
+   "rows": 5
+  },
+  {
+   "name": "blood_bank",
+   "columns": [
+    {
+     "name": "bank_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('blood_bank_bank_id_seq'::regclass)"
+    },
+    {
+     "name": "bank_name",
+     "type": "character varying",
+     "len": 100,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "city",
+     "type": "character varying",
+     "len": 50,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "phone",
+     "type": "character varying",
+     "len": 15,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "license_no",
+     "type": "character varying",
+     "len": 30,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    }
+   ],
+   "pk": [
+    "bank_id"
+   ],
+   "fks": [],
+   "rows": 3
+  },
+  {
+   "name": "hospital",
+   "columns": [
+    {
+     "name": "hospital_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('hospital_hospital_id_seq'::regclass)"
+    },
+    {
+     "name": "hospital_name",
+     "type": "character varying",
+     "len": 100,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "city",
+     "type": "character varying",
+     "len": 50,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "phone",
+     "type": "character varying",
+     "len": 15,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    }
+   ],
+   "pk": [
+    "hospital_id"
+   ],
+   "fks": [],
+   "rows": 4
+  },
+  {
+   "name": "deferral_reason",
+   "columns": [
+    {
+     "name": "reason_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('deferral_reason_reason_id_seq'::regclass)"
+    },
+    {
+     "name": "code",
+     "type": "character varying",
+     "len": 20,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "reason",
+     "type": "character varying",
+     "len": 100,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "defer_days",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "is_permanent",
+     "type": "boolean",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "false"
+    }
+   ],
+   "pk": [
+    "reason_id"
+   ],
+   "fks": [],
+   "rows": 12
+  },
+  {
+   "name": "sponsor",
+   "columns": [
+    {
+     "name": "sponsor_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('sponsor_sponsor_id_seq'::regclass)"
+    },
+    {
+     "name": "sponsor_name",
+     "type": "character varying",
+     "len": 100,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "contact_person",
+     "type": "character varying",
+     "len": 100,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "phone",
+     "type": "character varying",
+     "len": 15,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "email",
+     "type": "character varying",
+     "len": 100,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    }
+   ],
+   "pk": [
+    "sponsor_id"
+   ],
+   "fks": [],
+   "rows": 5
+  },
+  {
+   "name": "member",
+   "columns": [
+    {
+     "name": "member_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('member_member_id_seq'::regclass)"
+    },
+    {
+     "name": "usn",
+     "type": "character varying",
+     "len": 15,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "fname",
+     "type": "character varying",
+     "len": 50,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "lname",
+     "type": "character varying",
+     "len": 50,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "email",
+     "type": "character varying",
+     "len": 100,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "phone",
+     "type": "character varying",
+     "len": 15,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "role",
+     "type": "character varying",
+     "len": 12,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "'VOLUNTEER'::character varying"
+    },
+    {
+     "name": "dept_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "joined_on",
+     "type": "date",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "CURRENT_DATE"
+    },
+    {
+     "name": "password_hash",
+     "type": "text",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "is_active",
+     "type": "boolean",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "true"
+    }
+   ],
+   "pk": [
+    "member_id"
+   ],
+   "fks": [
+    {
+     "name": "member_dept_id_fkey",
+     "cols": [
+      "dept_id"
+     ],
+     "ref": "department",
+     "refcols": [
+      "dept_id"
+     ]
+    }
+   ],
+   "rows": 10
+  },
+  {
+   "name": "donor",
+   "columns": [
+    {
+     "name": "donor_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('donor_donor_id_seq'::regclass)"
+    },
+    {
+     "name": "fname",
+     "type": "character varying",
+     "len": 50,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "lname",
+     "type": "character varying",
+     "len": 50,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "gender",
+     "type": "character",
+     "len": 1,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "dob",
+     "type": "date",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "bg_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "phone",
+     "type": "character varying",
+     "len": 15,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "email",
+     "type": "character varying",
+     "len": 100,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "city",
+     "type": "character varying",
+     "len": 50,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "'Bengaluru'::character varying"
+    },
+    {
+     "name": "donor_type",
+     "type": "character varying",
+     "len": 10,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "'STUDENT'::character varying"
+    },
+    {
+     "name": "usn",
+     "type": "character varying",
+     "len": 15,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "dept_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "registered_on",
+     "type": "date",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "CURRENT_DATE"
+    },
+    {
+     "name": "consent_contact",
+     "type": "boolean",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "true"
+    },
+    {
+     "name": "is_active",
+     "type": "boolean",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "true"
+    }
+   ],
+   "pk": [
+    "donor_id"
+   ],
+   "fks": [
+    {
+     "name": "donor_bg_id_fkey",
+     "cols": [
+      "bg_id"
+     ],
+     "ref": "blood_group",
+     "refcols": [
+      "bg_id"
+     ]
+    },
+    {
+     "name": "donor_dept_id_fkey",
+     "cols": [
+      "dept_id"
+     ],
+     "ref": "department",
+     "refcols": [
+      "dept_id"
+     ]
+    }
+   ],
+   "rows": 56
+  },
+  {
+   "name": "event",
+   "columns": [
+    {
+     "name": "event_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('event_event_id_seq'::regclass)"
+    },
+    {
+     "name": "title",
+     "type": "character varying",
+     "len": 150,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "event_type",
+     "type": "character varying",
+     "len": 12,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "'BLOOD_DRIVE'::character varying"
+    },
+    {
+     "name": "description",
+     "type": "text",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "venue_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "starts_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "ends_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "status",
+     "type": "character varying",
+     "len": 10,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "'PLANNED'::character varying"
+    },
+    {
+     "name": "coordinator_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "budget",
+     "type": "numeric",
+     "len": null,
+     "prec": 10,
+     "scale": 2,
+     "nullable": false,
+     "default": "0"
+    },
+    {
+     "name": "created_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "CURRENT_TIMESTAMP"
+    }
+   ],
+   "pk": [
+    "event_id"
+   ],
+   "fks": [
+    {
+     "name": "event_venue_id_fkey",
+     "cols": [
+      "venue_id"
+     ],
+     "ref": "venue",
+     "refcols": [
+      "venue_id"
+     ]
+    },
+    {
+     "name": "event_coordinator_id_fkey",
+     "cols": [
+      "coordinator_id"
+     ],
+     "ref": "member",
+     "refcols": [
+      "member_id"
+     ]
+    }
+   ],
+   "rows": 9
+  },
+  {
+   "name": "blood_drive",
+   "columns": [
+    {
+     "name": "event_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "bank_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "target_units",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "max_donors",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "registration_open",
+     "type": "boolean",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "true"
+    }
+   ],
+   "pk": [
+    "event_id"
+   ],
+   "fks": [
+    {
+     "name": "blood_drive_event_id_fkey",
+     "cols": [
+      "event_id"
+     ],
+     "ref": "event",
+     "refcols": [
+      "event_id"
+     ]
+    },
+    {
+     "name": "blood_drive_bank_id_fkey",
+     "cols": [
+      "bank_id"
+     ],
+     "ref": "blood_bank",
+     "refcols": [
+      "bank_id"
+     ]
+    }
+   ],
+   "rows": 5
+  },
+  {
+   "name": "event_volunteer",
+   "columns": [
+    {
+     "name": "event_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "member_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "duty",
+     "type": "character varying",
+     "len": 40,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "'General help'::character varying"
+    },
+    {
+     "name": "hours",
+     "type": "numeric",
+     "len": null,
+     "prec": 4,
+     "scale": 1,
+     "nullable": false,
+     "default": "0"
+    }
+   ],
+   "pk": [
+    "event_id",
+    "member_id"
+   ],
+   "fks": [
+    {
+     "name": "event_volunteer_event_id_fkey",
+     "cols": [
+      "event_id"
+     ],
+     "ref": "event",
+     "refcols": [
+      "event_id"
+     ]
+    },
+    {
+     "name": "event_volunteer_member_id_fkey",
+     "cols": [
+      "member_id"
+     ],
+     "ref": "member",
+     "refcols": [
+      "member_id"
+     ]
+    }
+   ],
+   "rows": 33
+  },
+  {
+   "name": "event_sponsor",
+   "columns": [
+    {
+     "name": "event_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "sponsor_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "amount",
+     "type": "numeric",
+     "len": null,
+     "prec": 10,
+     "scale": 2,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "received_on",
+     "type": "date",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    }
+   ],
+   "pk": [
+    "event_id",
+    "sponsor_id"
+   ],
+   "fks": [
+    {
+     "name": "event_sponsor_event_id_fkey",
+     "cols": [
+      "event_id"
+     ],
+     "ref": "event",
+     "refcols": [
+      "event_id"
+     ]
+    },
+    {
+     "name": "event_sponsor_sponsor_id_fkey",
+     "cols": [
+      "sponsor_id"
+     ],
+     "ref": "sponsor",
+     "refcols": [
+      "sponsor_id"
+     ]
+    }
+   ],
+   "rows": 11
+  },
+  {
+   "name": "registration",
+   "columns": [
+    {
+     "name": "reg_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('registration_reg_id_seq'::regclass)"
+    },
+    {
+     "name": "drive_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "donor_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "slot_time",
+     "type": "time without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "registered_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "CURRENT_TIMESTAMP"
+    },
+    {
+     "name": "status",
+     "type": "character varying",
+     "len": 10,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "'REGISTERED'::character varying"
+    },
+    {
+     "name": "registered_by",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": true,
+     "default": null
+    }
+   ],
+   "pk": [
+    "reg_id"
+   ],
+   "fks": [
+    {
+     "name": "registration_drive_id_fkey",
+     "cols": [
+      "drive_id"
+     ],
+     "ref": "blood_drive",
+     "refcols": [
+      "event_id"
+     ]
+    },
+    {
+     "name": "registration_donor_id_fkey",
+     "cols": [
+      "donor_id"
+     ],
+     "ref": "donor",
+     "refcols": [
+      "donor_id"
+     ]
+    },
+    {
+     "name": "registration_registered_by_fkey",
+     "cols": [
+      "registered_by"
+     ],
+     "ref": "member",
+     "refcols": [
+      "member_id"
+     ]
+    }
+   ],
+   "rows": 107
+  },
+  {
+   "name": "screening",
+   "columns": [
+    {
+     "name": "reg_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "screened_by",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "screened_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "CURRENT_TIMESTAMP"
+    },
+    {
+     "name": "hemoglobin",
+     "type": "numeric",
+     "len": null,
+     "prec": 4,
+     "scale": 1,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "weight_kg",
+     "type": "numeric",
+     "len": null,
+     "prec": 5,
+     "scale": 1,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "bp_systolic",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "bp_diastolic",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "pulse",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "temperature_c",
+     "type": "numeric",
+     "len": null,
+     "prec": 3,
+     "scale": 1,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "reason_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "remarks",
+     "type": "character varying",
+     "len": 200,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    }
+   ],
+   "pk": [
+    "reg_id"
+   ],
+   "fks": [
+    {
+     "name": "screening_reg_id_fkey",
+     "cols": [
+      "reg_id"
+     ],
+     "ref": "registration",
+     "refcols": [
+      "reg_id"
+     ]
+    },
+    {
+     "name": "screening_screened_by_fkey",
+     "cols": [
+      "screened_by"
+     ],
+     "ref": "member",
+     "refcols": [
+      "member_id"
+     ]
+    },
+    {
+     "name": "screening_reason_id_fkey",
+     "cols": [
+      "reason_id"
+     ],
+     "ref": "deferral_reason",
+     "refcols": [
+      "reason_id"
+     ]
+    }
+   ],
+   "rows": 72
+  },
+  {
+   "name": "donation",
+   "columns": [
+    {
+     "name": "donation_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('donation_donation_id_seq'::regclass)"
+    },
+    {
+     "name": "reg_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "bag_no",
+     "type": "character varying",
+     "len": 20,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "volume_ml",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "collected_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "CURRENT_TIMESTAMP"
+    },
+    {
+     "name": "collected_by",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "status",
+     "type": "character varying",
+     "len": 12,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "'COLLECTED'::character varying"
+    },
+    {
+     "name": "handed_over_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    }
+   ],
+   "pk": [
+    "donation_id"
+   ],
+   "fks": [
+    {
+     "name": "donation_reg_id_fkey",
+     "cols": [
+      "reg_id"
+     ],
+     "ref": "registration",
+     "refcols": [
+      "reg_id"
+     ]
+    },
+    {
+     "name": "donation_collected_by_fkey",
+     "cols": [
+      "collected_by"
+     ],
+     "ref": "member",
+     "refcols": [
+      "member_id"
+     ]
+    }
+   ],
+   "rows": 58
+  },
+  {
+   "name": "blood_request",
+   "columns": [
+    {
+     "name": "request_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('blood_request_request_id_seq'::regclass)"
+    },
+    {
+     "name": "hospital_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "patient_name",
+     "type": "character varying",
+     "len": 100,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "bg_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "units_needed",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "required_by",
+     "type": "date",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "urgency",
+     "type": "character varying",
+     "len": 10,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "'NORMAL'::character varying"
+    },
+    {
+     "name": "status",
+     "type": "character varying",
+     "len": 10,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "'OPEN'::character varying"
+    },
+    {
+     "name": "contact_phone",
+     "type": "character varying",
+     "len": 15,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "note",
+     "type": "character varying",
+     "len": 200,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "raised_by",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "raised_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "CURRENT_TIMESTAMP"
+    }
+   ],
+   "pk": [
+    "request_id"
+   ],
+   "fks": [
+    {
+     "name": "blood_request_hospital_id_fkey",
+     "cols": [
+      "hospital_id"
+     ],
+     "ref": "hospital",
+     "refcols": [
+      "hospital_id"
+     ]
+    },
+    {
+     "name": "blood_request_bg_id_fkey",
+     "cols": [
+      "bg_id"
+     ],
+     "ref": "blood_group",
+     "refcols": [
+      "bg_id"
+     ]
+    },
+    {
+     "name": "blood_request_raised_by_fkey",
+     "cols": [
+      "raised_by"
+     ],
+     "ref": "member",
+     "refcols": [
+      "member_id"
+     ]
+    }
+   ],
+   "rows": 7
+  },
+  {
+   "name": "request_pledge",
+   "columns": [
+    {
+     "name": "request_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "donor_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "status",
+     "type": "character varying",
+     "len": 10,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "'CONTACTED'::character varying"
+    },
+    {
+     "name": "contacted_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "CURRENT_TIMESTAMP"
+    },
+    {
+     "name": "responded_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "donated_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    }
+   ],
+   "pk": [
+    "request_id",
+    "donor_id"
+   ],
+   "fks": [
+    {
+     "name": "request_pledge_request_id_fkey",
+     "cols": [
+      "request_id"
+     ],
+     "ref": "blood_request",
+     "refcols": [
+      "request_id"
+     ]
+    },
+    {
+     "name": "request_pledge_donor_id_fkey",
+     "cols": [
+      "donor_id"
+     ],
+     "ref": "donor",
+     "refcols": [
+      "donor_id"
+     ]
+    }
+   ],
+   "rows": 13
+  },
+  {
+   "name": "notification",
+   "columns": [
+    {
+     "name": "notification_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('notification_notification_id_seq'::regclass)"
+    },
+    {
+     "name": "member_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "kind",
+     "type": "character varying",
+     "len": 30,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "message",
+     "type": "character varying",
+     "len": 300,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "link",
+     "type": "character varying",
+     "len": 100,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "ref_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "created_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "CURRENT_TIMESTAMP"
+    },
+    {
+     "name": "read_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    }
+   ],
+   "pk": [
+    "notification_id"
+   ],
+   "fks": [
+    {
+     "name": "notification_member_id_fkey",
+     "cols": [
+      "member_id"
+     ],
+     "ref": "member",
+     "refcols": [
+      "member_id"
+     ]
+    }
+   ],
+   "rows": 0
+  },
+  {
+   "name": "donor_reminder",
+   "columns": [
+    {
+     "name": "reminder_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('donor_reminder_reminder_id_seq'::regclass)"
+    },
+    {
+     "name": "donor_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "kind",
+     "type": "character varying",
+     "len": 20,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "message",
+     "type": "character varying",
+     "len": 300,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "channel",
+     "type": "character varying",
+     "len": 10,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "'SMS'::character varying"
+    },
+    {
+     "name": "created_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "CURRENT_TIMESTAMP"
+    },
+    {
+     "name": "sent_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    }
+   ],
+   "pk": [
+    "reminder_id"
+   ],
+   "fks": [
+    {
+     "name": "donor_reminder_donor_id_fkey",
+     "cols": [
+      "donor_id"
+     ],
+     "ref": "donor",
+     "refcols": [
+      "donor_id"
+     ]
+    }
+   ],
+   "rows": 0
+  },
+  {
+   "name": "activity_log",
+   "columns": [
+    {
+     "name": "log_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": false,
+     "default": "nextval('activity_log_log_id_seq'::regclass)"
+    },
+    {
+     "name": "member_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "action",
+     "type": "character varying",
+     "len": 30,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": null
+    },
+    {
+     "name": "entity",
+     "type": "character varying",
+     "len": 30,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "entity_id",
+     "type": "integer",
+     "len": null,
+     "prec": 32,
+     "scale": 0,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "details",
+     "type": "text",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": true,
+     "default": null
+    },
+    {
+     "name": "logged_at",
+     "type": "timestamp without time zone",
+     "len": null,
+     "prec": null,
+     "scale": null,
+     "nullable": false,
+     "default": "CURRENT_TIMESTAMP"
+    }
+   ],
+   "pk": [
+    "log_id"
+   ],
+   "fks": [
+    {
+     "name": "activity_log_member_id_fkey",
+     "cols": [
+      "member_id"
+     ],
+     "ref": "member",
+     "refcols": [
+      "member_id"
+     ]
+    }
+   ],
+   "rows": 0
+  }
+ ],
+ "counts": {
+  "tables": 22,
+  "views": 11,
+  "pk": 22,
+  "fk": 29,
+  "unique": 16,
+  "check": 35,
+  "exclusion": 1,
+  "functions": 41,
+  "trigger_functions": 11,
+  "triggers": 14,
+  "indexes": 51,
+  "partial_unique": 3
+ }
+}

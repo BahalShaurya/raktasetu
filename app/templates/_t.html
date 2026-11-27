@@ -1,0 +1,3 @@
+{% macro pill(s) %}<span class="pill s-{{ s }}">{{ s }}</span>{% endmacro %}
+{% macro table(cols, data) %}<table><tr>{% for c in cols %}<th>{{ c|replace('_',' ') }}</th>{% endfor %}</tr>
+{% for r in data %}<tr>{% for c in cols %}<td>{{ r[c] if r[c] is not none else '—' }}</td>{% endfor %}</tr>{% else %}<tr><td colspan="{{ cols|length }}" class="muted">No rows.</td></tr>{% endfor %}</table>{% endmacro %}

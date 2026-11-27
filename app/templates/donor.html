@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% from "_t.html" import pill %}{% block body %}
+<h1>{{ d.donor_name }} <span class="pill">{{ d.group_name }}</span></h1><p class="sub">{{ d.donor_type }} · {{ d.city }} · age {{ d.age }} · {{ info.phone }}{% if info.usn %} · {{ info.usn }}{% endif %}</p>
+<div class="grid g4"><div class="stat"><b>{{ d.donations }}</b><span>donations</span></div><div class="stat"><b style="font-size:18px">{{ d.last_donated_on or '—' }}</b><span>last donated</span></div>
+<div class="stat"><b style="font-size:18px">{{ d.next_eligible_on or 'any time' }}</b><span>next eligible</span></div><div class="stat"><b style="font-size:18px">{{ 'Yes' if d.eligible_now else 'Not yet' }}</b><span>can donate today</span></div></div>
+<h2>Register for a drive</h2><form method="post" class="card row"><div><label>Drive</label><select name="drive">{% for x in drives %}<option value="{{ x.event_id }}">{{ x.title }} · {{ x.drive_date }}</option>{% endfor %}</select></div><button>Register</button></form>
+<h2>History</h2><table><tr><th>Drive</th><th>Date</th><th>Status</th><th>Hb</th><th>Weight</th><th>Bag</th><th>Volume</th><th>Deferral reason</th></tr>
+{% for h in hist %}<tr><td>{{ h.drive }}</td><td>{{ h.drive_date }}</td><td>{{ pill(h.reg_status) }}</td><td>{{ h.hemoglobin or '—' }}</td><td>{{ h.weight_kg or '—' }}</td><td>{{ h.bag_no or '—' }}</td><td>{{ h.volume_ml or '—' }}</td><td>{{ h.deferral_reason or '—' }}</td></tr>{% else %}<tr><td colspan="8" class="muted">No history yet.</td></tr>{% endfor %}</table>{% endblock %}

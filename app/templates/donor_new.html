@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block body %}<div class="card" style="max-width:720px;margin:auto"><h1>{{ 'Become a blood donor' if public else 'Add donor' }}</h1>
+<p class="sub">Age 18–65. Your details are used only for blood-donation coordination.</p>
+<form method="post" class="f"><div class="grid g2"><div><label>First name</label><input name="fname" required></div><div><label>Last name</label><input name="lname" required></div>
+<div><label>Gender</label><select name="gender"><option value="M">Male</option><option value="F">Female</option><option value="O">Other</option></select></div><div><label>Date of birth</label><input type="date" name="dob" required></div>
+<div><label>Blood group</label><select name="bg">{% for g in groups %}<option value="{{ g.bg_id }}">{{ g.group_name }}</option>{% endfor %}</select></div><div><label>Phone (10 digits)</label><input name="phone" required pattern="[0-9]{10}"></div>
+<div><label>Email</label><input type="email" name="email"></div><div><label>City</label><input name="city" value="Bengaluru"></div>
+<div><label>Donor type</label><select name="type"><option>STUDENT</option><option>STAFF</option><option>ALUMNI</option><option>PUBLIC</option></select></div><div><label>USN (students)</label><input name="usn"></div>
+<div><label>Department</label><select name="dept"><option value="">—</option>{% for d in depts %}<option value="{{ d.dept_id }}">{{ d.dept_name }}</option>{% endfor %}</select></div>
+{% if public %}<div><label>Register for a drive</label><select name="drive"><option value="">Not now</option>{% for d in drives %}<option value="{{ d.event_id }}">{{ d.title }} · {{ d.drive_date }}</option>{% endfor %}</select></div>{% endif %}</div>
+<p><button>{{ 'Register' if public else 'Save donor' }}</button></p></form></div>{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block body %}<div class="card" style="max-width:700px;margin:auto"><h1>New event</h1><form method="post" class="f">
+<label>Title</label><input name="title" required><div class="grid g2"><div><label>Type</label><select name="type"><option>BLOOD_DRIVE</option><option>AWARENESS</option><option>FUNDRAISER</option><option>SOCIAL</option><option>WORKSHOP</option></select></div>
+<div><label>Venue</label><select name="venue">{% for v in venues %}<option value="{{ v.venue_id }}">{{ v.venue_name }}</option>{% endfor %}</select></div>
+<div><label>Starts</label><input type="datetime-local" name="start" required></div><div><label>Ends</label><input type="datetime-local" name="end" required></div><div><label>Budget (₹)</label><input type="number" name="budget" value="0"></div>
+<div><label>Blood bank (drives only)</label><select name="bank"><option value="">—</option>{% for b in banks %}<option value="{{ b.bank_id }}">{{ b.bank_name }}</option>{% endfor %}</select></div><div><label>Target units</label><input type="number" name="target"></div><div><label>Max donors</label><input type="number" name="max"></div></div>
+<label>Description</label><textarea name="description" rows="3"></textarea><p><button>Create event</button></p></form></div>{% endblock %}

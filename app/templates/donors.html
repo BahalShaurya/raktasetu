@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block body %}<div class="row" style="justify-content:space-between"><div><h1>Donors</h1><p class="sub">{{ donors|length }} found</p></div><a class="btn" href="/donors/new">+ Add donor</a></div>
+<form class="card row" method="get"><div><label>Name</label><input name="name" value="{{ f.name or '' }}"></div>
+<div><label>Blood group</label><select name="group"><option value="">Any</option>{% for g in groups %}<option {{ 'selected' if f.group==g.group_name }}>{{ g.group_name }}</option>{% endfor %}</select></div>
+<div><label>City</label><input name="city" value="{{ f.city or '' }}"></div>
+<div><label>Type</label><select name="type"><option value="">Any</option>{% for t in ['STUDENT','STAFF','ALUMNI','PUBLIC'] %}<option {{ 'selected' if f.type==t }}>{{ t }}</option>{% endfor %}</select></div>
+<div><label><input type="checkbox" name="eligible" value="1" {{ 'checked' if f.eligible=='1' }}> eligible today only</label></div><button>Search</button></form>
+<table><tr><th>Name</th><th>Group</th><th>City</th><th>Type</th><th>Donations</th><th>Last donated</th><th>Next eligible</th><th>Today</th></tr>
+{% for d in donors %}<tr><td><a href="/donors/{{ d.donor_id }}">{{ d.donor_name }}</a></td><td>{{ d.group_name }}</td><td>{{ d.city }}</td><td>{{ d.donor_type }}</td><td>{{ d.donations }}</td><td>{{ d.last_donated_on or '—' }}</td><td>{{ d.next_eligible_on or '—' }}</td><td>{{ 'Eligible' if d.eligible_now else 'Not yet' }}</td></tr>{% endfor %}</table>{% endblock %}

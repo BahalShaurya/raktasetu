@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block body %}<h1>Reports</h1><p class="sub">Every report is one SQL query — open it to see the query and result.</p>
+<div class="grid g2">{% for r in reports %}<a class="card" style="text-decoration:none;color:inherit" href="/reports/{{ r.key }}"><b>{{ r.n }}. {{ r.title }}</b><br><span class="muted">{{ r.note }}</span></a>{% endfor %}</div>{% endblock %}

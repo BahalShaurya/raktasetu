@@ -1,0 +1,28 @@
+:root{--red:#b3122f;--dark:#1f2430;--bg:#f5f6f8;--line:#e2e5ea;--ok:#1b7f4b;--warn:#b26a00}
+*{box-sizing:border-box}body{margin:0;font:15px/1.45 Inter,system-ui,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--dark)}
+nav{background:var(--dark);display:flex;align-items:center;gap:4px;padding:0 20px;flex-wrap:wrap}
+nav .brand{color:#fff;font-weight:700;font-size:18px;margin-right:18px;padding:14px 0}nav .brand span{color:#ff5a74}
+nav a{color:#cfd3dc;text-decoration:none;padding:15px 12px;font-size:14px}nav a:hover,nav a.on{color:#fff;background:#2c3342}
+nav .sp{flex:1}.badge{background:var(--red);color:#fff;border-radius:10px;padding:1px 7px;font-size:12px;margin-left:4px}
+main{max-width:1180px;margin:22px auto;padding:0 20px}h1{margin:0 0 4px;font-size:24px}h2{font-size:17px;margin:26px 0 10px}
+.sub{color:#667;margin:0 0 18px}.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:16px}
+.grid{display:grid;gap:14px}.g4{grid-template-columns:repeat(4,1fr)}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px}.stat b{display:block;font-size:28px;color:var(--red)}.stat span{color:#667;font-size:13px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th{background:#eef0f4;text-align:left;padding:9px 11px;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;color:#556}
+td{padding:8px 11px;border-top:1px solid var(--line);vertical-align:middle}tr:hover td{background:#fafbfc}
+a{color:var(--red)}form.inline{display:inline}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+label{display:block;font-size:12.5px;color:#556;margin-bottom:3px}input,select,textarea{font:inherit;padding:8px 10px;border:1px solid #c8ccd4;border-radius:7px;background:#fff;min-width:0}
+input[type=checkbox]{min-width:auto}.f label{margin-top:10px}.f input,.f select,.f textarea{width:100%}
+button,.btn{background:var(--red);color:#fff;border:0;border-radius:7px;padding:8px 14px;font:inherit;cursor:pointer;text-decoration:none;display:inline-block}
+button.sec,.btn.sec{background:#fff;color:var(--dark);border:1px solid #c8ccd4}button.sm{padding:4px 9px;font-size:13px}button.warn{background:#7a4b00}
+.flash{padding:10px 14px;border-radius:8px;margin-bottom:12px}.flash.ok{background:#e4f5ec;color:var(--ok);border:1px solid #b9e3cc}.flash.err{background:#fde8ec;color:#8d0f27;border:1px solid #f4b8c3}
+.pill{display:inline-block;padding:2px 9px;border-radius:10px;font-size:12px;background:#e8eaf0}
+.s-DONATED,.s-COMPLETED,.s-FULFILLED,.s-COLLECTED,.s-HANDED_OVER,.s-PLEDGED,.s-Fit{background:#dff3e8;color:var(--ok)}
+.s-DEFERRED,.s-CRITICAL,.s-CANCELLED,.s-DISCARDED,.s-DECLINED,.s-NO_SHOW{background:#fde0e5;color:#8d0f27}
+.s-URGENT,.s-CONTACTED,.s-PLANNED,.s-REGISTERED{background:#fff1d6;color:var(--warn)}
+.login{max-width:380px;margin:70px auto}.muted{color:#778}.right{text-align:right}details summary{cursor:pointer;color:var(--red)}
+details form{margin-top:8px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}details form button{grid-column:span 4}
+@media(max-width:800px){.g4,.g3,.g2{grid-template-columns:1fr 1fr}}
+details form{width:420px;max-width:100%}details form input,details form select{width:100%}
+td details{display:block;margin-bottom:6px}main{overflow-x:auto}

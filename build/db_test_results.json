@@ -1,0 +1,205 @@
+[
+ {
+  "id": "DB1",
+  "title": "Two events at the same venue and time",
+  "expected": "Exclusion constraint refuses the second booking: \"The venue is already booked for some of those hours\"",
+  "observed": "The venue is already booked for some of those hours",
+  "passed": true
+ },
+ {
+  "id": "DB2",
+  "title": "Register a donor who donated recently",
+  "expected": "Trigger refuses: donor can donate again only from <date>",
+  "observed": "Manish Pillai can donate again only from 18 Dec 2026",
+  "passed": true
+ },
+ {
+  "id": "DB3",
+  "title": "Register the same donor twice for one drive",
+  "expected": "Refused: \"This donor is already registered for this drive (registered)\"",
+  "observed": "This donor is already registered for this drive (registered)",
+  "passed": true
+ },
+ {
+  "id": "DB4",
+  "title": "Register for a drive that is full",
+  "expected": "Trigger refuses: \"The drive is full (4 donors)\"",
+  "observed": "The drive is full (4 donors)",
+  "passed": true
+ },
+ {
+  "id": "DB5",
+  "title": "Screening with low hemoglobin (11.8 g/dL)",
+  "expected": "Outcome DEFERRED: Low hemoglobin; registration becomes DEFERRED; donor gets a return-date reminder",
+  "observed": "DEFERRED: Low hemoglobin (below 12.5 g/dL) | registration=DEFERRED | reminder: Thank you for coming. You were deferred (Low hemoglobin (below 12.5 g/dL)). You can donate again from 27 Dec 2026.",
+  "passed": true
+ },
+ {
+  "id": "DB6",
+  "title": "Screening passed, then blood collected",
+  "expected": "ELIGIBLE; 450 ml chosen for 72 kg; registration DONATED; thank-you reminder and activity-log row written by triggers",
+  "observed": "ELIGIBLE | volume=450 ml | registration=DONATED | thank-you reminders=1 | log rows=1",
+  "passed": true
+ },
+ {
+  "id": "DB7",
+  "title": "450 ml requested from a 52 kg donor",
+  "expected": "Trigger refuses: \"450 ml needs a donor above 55 kg\"",
+  "observed": "450 ml needs a donor above 55 kg (this donor weighs 52.0 kg); use 350 ml",
+  "passed": true
+ },
+ {
+  "id": "DB8",
+  "title": "Collect blood before screening",
+  "expected": "Trigger refuses: registration is REGISTERED (it must be SCREENED)",
+  "observed": "Cannot collect blood: registration 83 is REGISTERED (it must be SCREENED)",
+  "passed": true
+ },
+ {
+  "id": "DB9",
+  "title": "Collect blood from a deferred donor",
+  "expected": "Trigger refuses: registration is DEFERRED",
+  "observed": "Cannot collect blood: registration 83 is DEFERRED (it must be SCREENED)",
+  "passed": true
+ },
+ {
+  "id": "DB10",
+  "title": "Volunteer tries to record a screening",
+  "expected": "Refused: \"Only ADMIN or COORDINATOR can do this\"",
+  "observed": "Only ADMIN or COORDINATOR can do this",
+  "passed": true
+ },
+ {
+  "id": "DB11",
+  "title": "Ask an A+ donor to help an O- patient",
+  "expected": "Trigger refuses: \"Blood group A+ cannot be given to a patient of group O-\"",
+  "observed": "Blood group A+ cannot be given to a patient of group O-",
+  "passed": true
+ },
+ {
+  "id": "DB12",
+  "title": "Ask a donor who donated recently to help a patient",
+  "expected": "Trigger refuses: donor can donate again only from <date>",
+  "observed": "Manish Pillai can donate again only from 18 Dec 2026",
+  "passed": true
+ },
+ {
+  "id": "DB13",
+  "title": "Mark a donor as donated before they accepted",
+  "expected": "Trigger refuses: \"A response cannot change from CONTACTED to DONATED\"",
+  "observed": "A response cannot change from CONTACTED to DONATED",
+  "passed": true
+ },
+ {
+  "id": "DB14",
+  "title": "One unit needed, one donor donates",
+  "expected": "Trigger sets the request to FULFILLED and notifies the member who raised it",
+  "observed": "request status=FULFILLED | fulfilment notifications=1",
+  "passed": true
+ },
+ {
+  "id": "DB15",
+  "title": "Raise an emergency request",
+  "expected": "Trigger writes one notification for the admin and each of the 3 coordinators (4 in all)",
+  "observed": "4 notifications | CRITICAL: 2 unit(s) of B+ needed at Sunrise Multispeciality Hospital by 28 Nov",
+  "passed": true
+ },
+ {
+  "id": "DB16",
+  "title": "Insert a donor born in 2012 (under 18)",
+  "expected": "CHECK constraint donor_dob_check refuses the row",
+  "observed": "new row for relation \"donor\" violates check constraint \"donor_dob_check\"",
+  "passed": true
+ },
+ {
+  "id": "DB17",
+  "title": "Add a donor aged 17 through fn_add_donor",
+  "expected": "Refused: \"A donor must be between 18 and 65 years old\"",
+  "observed": "A donor must be between 18 and 65 years old",
+  "passed": true
+ },
+ {
+  "id": "DB18",
+  "title": "Cancel a drive that has registrations",
+  "expected": "Trigger cancels all waiting registrations and queues a message for each donor",
+  "observed": "4 registrations cancelled | 4 drive-cancelled reminders queued",
+  "passed": true
+ },
+ {
+  "id": "DB19",
+  "title": "Close a drive while a screened donor has no bag recorded",
+  "expected": "Refused: \"1 donor(s) passed screening but have no donation recorded yet\"",
+  "observed": "1 donor(s) passed screening but have no donation recorded yet",
+  "passed": true
+ },
+ {
+  "id": "DB20",
+  "title": "Delete a donation row",
+  "expected": "Trigger refuses: rows of donation are never deleted",
+  "observed": "Rows of donation are never deleted (audit rule); change their status instead",
+  "passed": true
+ },
+ {
+  "id": "DB21",
+  "title": "Web-app role inserts into a table directly",
+  "expected": "Refused: permission denied for table donor",
+  "observed": "permission denied for table donor",
+  "passed": true
+ },
+ {
+  "id": "DB22",
+  "title": "Web-app role reads password hashes",
+  "expected": "Refused: permission denied for table member",
+  "observed": "permission denied for table member",
+  "passed": true
+ },
+ {
+  "id": "DB23",
+  "title": "A volunteer blocks a member",
+  "expected": "Refused: \"Only ADMIN can do this\"",
+  "observed": "Only ADMIN can do this",
+  "passed": true
+ },
+ {
+  "id": "DB24",
+  "title": "Eligible-again reminders run twice",
+  "expected": "First call adds reminders, second call adds 0 (one per donor in 30 days)",
+  "observed": "first call adds 16, second call adds 0",
+  "passed": true
+ },
+ {
+  "id": "DB25",
+  "title": "Open request whose date has passed",
+  "expected": "fn_expire_requests sets it to EXPIRED",
+  "observed": "2 expired | status=EXPIRED",
+  "passed": true
+ },
+ {
+  "id": "DB26",
+  "title": "Reuse a bag number",
+  "expected": "Refused by UNIQUE(bag_no): \"Bag number ... is already used\"",
+  "observed": "Bag number RS2606-001 is already used, or this registration already has a donation",
+  "passed": true
+ },
+ {
+  "id": "DB27",
+  "title": "Hand the bags of a drive to the blood bank",
+  "expected": "Collected bag becomes HANDED_OVER with a timestamp",
+  "observed": "1 bag handed over | status=HANDED_OVER",
+  "passed": true
+ },
+ {
+  "id": "DB28",
+  "title": "Eligibility function on two dates",
+  "expected": "Not eligible on 12 Dec 2026, eligible (NULL) on 1 Feb 2027",
+  "observed": "on 12 Dec: Manish Pillai can donate again only from 18 Dec 2026 | on 1 Feb 2027: None",
+  "passed": true
+ },
+ {
+  "id": "DB29",
+  "title": "Two open requests for the same patient, hospital and group",
+  "expected": "Partial unique index refuses the second: \"An open request for this patient ... already exists\"",
+  "observed": "An open request for this patient, hospital and blood group already exists",
+  "passed": true
+ }
+]

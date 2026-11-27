@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% from "_t.html" import pill, table %}{% block body %}
+<h1>Dashboard</h1><p class="sub">Live figures from the database · {{ today.strftime('%d %b %Y') }}</p>
+<div class="grid g4"><div class="stat"><b>{{ ov.donors }}</b><span>registered donors</span></div><div class="stat"><b>{{ ov.donors_eligible_now }}</b><span>eligible to donate today</span></div>
+<div class="stat"><b>{{ ov.units_collected }}</b><span>bags collected ({{ '%.1f'|format(ov.litres_ml/1000) }} L)</span></div><div class="stat"><b>{{ ov.open_requests }}</b><span>open emergency requests</span></div></div>
+<h2>Open emergency requests</h2><table><tr><th>Hospital</th><th>Patient</th><th>Group</th><th>Urgency</th><th>Units left</th><th>Pledged</th><th>Needed by</th></tr>
+{% for r in reqs %}<tr><td><a href="/requests/{{ r.request_id }}">{{ r.hospital_name }}</a></td><td>{{ r.patient_name }}</td><td>{{ r.group_name }}</td><td>{{ pill(r.urgency) }}</td><td>{{ r.units_still_needed }}</td><td>{{ r.pledged }}</td><td>{{ r.required_by }} ({{ r.days_left }} d)</td></tr>
+{% else %}<tr><td colspan="7" class="muted">No open requests.</td></tr>{% endfor %}</table>
+<h2>Upcoming blood drives</h2><table><tr><th>Drive</th><th>Date</th><th>Venue</th><th>Blood bank</th><th>Registered</th><th>Seats left</th></tr>
+{% for d in drives %}<tr><td><a href="/drives/{{ d.event_id }}">{{ d.title }}</a></td><td>{{ d.drive_date }}</td><td>{{ d.venue_name }}</td><td>{{ d.bank_name }}</td><td>{{ d.registered }}/{{ d.max_donors }}</td><td>{{ d.seats_left }}</td></tr>{% endfor %}</table>
+<h2>Blood collected by group</h2><table><tr><th>Group</th><th>Bags</th><th>Volume (ml)</th></tr>{% for g in groups %}<tr><td>{{ g.group_name }}</td><td>{{ g.units }}</td><td>{{ g.volume_ml }}</td></tr>{% endfor %}</table>{% endblock %}

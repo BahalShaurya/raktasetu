@@ -1,0 +1,11 @@
+<!doctype html><html><head><meta charset="utf-8"><title>RaktaSetu - Rotaract Blood Donation</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head><body>
+<nav><a class="brand" href="/">Rakta<span>Setu</span></a>
+{% if me %}{% set p = request.path %}
+<a href="/" class="{{ 'on' if p=='/' }}">Dashboard</a><a href="/drives" class="{{ 'on' if p.startswith('/drives') }}">Blood drives</a>
+<a href="/donors" class="{{ 'on' if p.startswith('/donors') }}">Donors</a><a href="/requests" class="{{ 'on' if p.startswith('/requests') }}">Emergency requests</a>
+<a href="/events" class="{{ 'on' if p.startswith('/events') }}">Events</a><a href="/reports" class="{{ 'on' if p.startswith('/reports') }}">Reports</a>
+{% if role in ('ADMIN','COORDINATOR') %}<a href="/reminders">Reminders</a>{% endif %}{% if role=='ADMIN' %}<a href="/admin">Admin</a>{% endif %}
+<span class="sp"></span><a href="/messages">Messages{% if unread %}<span class="badge">{{ unread }}</span>{% endif %}</a><a href="/logout">{{ me }} ({{ role|lower }}) · Log out</a>
+{% else %}<span class="sp"></span><a href="/donate">Become a donor</a><a href="/login">Member login</a>{% endif %}</nav>
+<main>{% for c, m in get_flashed_messages(with_categories=true) %}<div class="flash {{ c }}">{{ m }}</div>{% endfor %}{% block body %}{% endblock %}</main></body></html>

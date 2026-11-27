@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% from "_t.html" import table %}{% block body %}<p><a href="/reports">← Reports</a></p><h1>{{ r.n }}. {{ r.title }}</h1><p class="sub">{{ r.note }}</p>
+<details class="card" open><summary>SQL query</summary><pre style="white-space:pre-wrap;font-size:13px">{{ r.sql }}</pre></details>{{ table(cols, data) }}{% endblock %}
